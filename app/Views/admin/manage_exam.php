@@ -26,6 +26,10 @@
                        onclick="return confirm('Hapus ujian?')">
                         Hapus
                     </a>
+                    <a href="<?= base_url('admin/add-question/' . $exam['id']); ?>" 
+                       class="btn btn-success">
+                        Tambah Soal
+                    </a>
                 </td>
             </tr>
         <?php endforeach; ?>

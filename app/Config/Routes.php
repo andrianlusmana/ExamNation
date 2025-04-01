@@ -53,3 +53,12 @@ $routes->get('admin/delete_exam/(:num)', 'Admin::delete_exam/$1');
 $routes->post('admin/delete_exam/(:num)', 'AdminController::delete_exam/$1');
 
 
+$routes->get('/admin/add-exam', 'Admin::addExam');
+$routes->post('/admin/store-exam', 'Admin::storeExam');
+
+
+$routes->get('/admin/add-question/(:num)', 'Admin::addQuestion/$1');
+$routes->post('/admin/store-question', 'Admin::storeQuestion');
+
+
+
