@@ -32,6 +32,8 @@ $routes->group('peserta', function($routes) {
     $routes->get('result', 'Peserta::showResult');
 });
 
+$routes->get('admin/get-ujian-harian', 'Admin::get_ujian_harian');
+
 $routes->get('/dashboard', 'Admin::dashboard');
 $routes->get('/peserta/dashboard', 'Peserta::dashboard');
 

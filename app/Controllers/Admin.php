@@ -4,9 +4,15 @@ namespace App\Controllers;
 use App\Models\ExamModel;
 use App\Models\UserModel;
 use App\Models\QuestionModel;
+use Config\Database;
 
 class Admin extends BaseController
 {
+    protected $db;
+
+    public function __construct() {
+        $this->db = Database::connect();
+    }
     public function dashboard()
     {
         return view('admin/dashboard');
@@ -132,7 +138,7 @@ class Admin extends BaseController
     {
         $questionModel = new QuestionModel();
 
-        
+
         if (
             !$this->validate([
                 'question_text' => 'required',
@@ -158,6 +164,38 @@ class Admin extends BaseController
         ]);
 
         return redirect()->to('/admin/manage-exam')->with('success', 'Soal berhasil ditambahkan.');
+    }
+
+    public function get_ujian_harian()
+    {
+        $db = \Config\Database::connect();
+        $query = $this->db->query("
+        SELECT DAYNAME(created_at) AS hari, COUNT(*) AS jumlah 
+        FROM exams
+        WHERE WEEK(created_at) = WEEK(NOW())
+        GROUP BY DAYOFWEEK(created_at)
+    ");
+
+        $result = $query->getResultArray();
+
+        $hariMap = [
+            'Monday' => 0,
+            'Tuesday' => 1,
+            'Wednesday' => 2,
+            'Thursday' => 3,
+            'Friday' => 4,
+            'Saturday' => 5,
+            'Sunday' => 6,
+        ];
+
+        $jumlahUjianPerHari = array_fill(0, 7, 0);
+
+        foreach ($result as $row) {
+            $index = $hariMap[$row['hari']];
+            $jumlahUjianPerHari[$index] = (int) $row['jumlah'];
+        }
+
+        return $this->response->setJSON($jumlahUjianPerHari);
     }
 
 
