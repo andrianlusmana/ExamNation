@@ -1,10 +1,11 @@
-<?= $this->include('layouts/header') ?>
+<!-- Load CSS -->
+<link rel="stylesheet" href="<?= base_url('assets/css/hasil_ujian.css') ?>">
 
-<h2>Hasil Ujian</h2>
-<p>Ujian: <strong><?= esc($examTitle) ?></strong></p>
-<p>Jawaban benar: <?= esc($correctCount) ?> dari <?= esc($totalQuestions) ?></p>
-<p>Skor: <strong><?= esc($score) ?>%</strong></p>
+<div class="container">
+    <h2>Hasil Ujian</h2>
+    <p>Ujian: <strong><?= esc($examTitle) ?></strong></p>
+    <p>Jawaban benar: <?= esc($correctCount) ?> dari <?= esc($totalQuestions) ?></p>
+    <p>Skor: <strong><?= esc($score) ?>%</strong></p>
 
-<a href="<?= base_url('peserta/dashboard') ?>" class="btn btn-secondary">Kembali ke Dashboard</a>
-
-<?= $this->include('layouts/footer') ?>
+    <a href="<?= base_url('peserta/dashboard') ?>" class="btn">Kembali ke Dashboard</a>
+</div>
