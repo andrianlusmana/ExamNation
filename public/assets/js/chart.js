@@ -33,3 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
 }
+
+function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('active');
+}

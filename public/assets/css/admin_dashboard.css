@@ -16,6 +16,7 @@ body {
     top: 0;
     left: 0;
     padding-top: 60px;
+    transition: transform 0.3s ease-in-out;
 }
 
 .sidebar a {
@@ -32,6 +33,7 @@ body {
 .main-content {
     margin-left: 220px;
     padding: 30px;
+    transition: margin-left 0.3s ease-in-out;
 }
 
 .card {
@@ -42,7 +44,6 @@ body {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
-
 
 .exam-header {
     background-image: url('https://cdn.pixabay.com/photo/2016/03/26/13/09/quiz-1283404_960_720.png');
@@ -79,4 +80,42 @@ body {
 
 .dark-mode .exam-header {
     background-blend-mode: multiply;
+}
+
+/* 🔽 Tambahan Media Query untuk Responsif */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+/* Optional: Tambah tombol untuk toggle sidebar di layar kecil */
+.toggle-btn {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    background-color: #343a40;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .toggle-btn {
+        display: block;
+    }
 }
