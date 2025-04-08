@@ -5,8 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Examination - Your Gateway to Academic Success</title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/home_style.css'); ?>">
+
+    <!-- Style CSS -->
+    
+    <link rel="stylesheet" href="<?= base_url('assets/css/home_style.css') ?>">
+
+    <!-- Unicons -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
 </head>
 
 <body>
