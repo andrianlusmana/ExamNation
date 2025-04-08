@@ -2,11 +2,6 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-.dark-mode {
-    background-color: #121212 !important;
-    color: #e0e0e0 !important;
-}
-
 .sidebar {
     height: 100vh;
     background-color: #343a40;
@@ -16,7 +11,7 @@ body {
     top: 0;
     left: 0;
     padding-top: 60px;
-    transition: transform 0.3s ease-in-out;
+    z-index: 999;
 }
 
 .sidebar a {
@@ -33,7 +28,6 @@ body {
 .main-content {
     margin-left: 220px;
     padding: 30px;
-    transition: margin-left 0.3s ease-in-out;
 }
 
 .card {
@@ -56,11 +50,19 @@ body {
     margin-bottom: 30px;
 }
 
-.dark-mode .exam-header {
-    color: #e0e0e0;
+.dark-mode {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
 }
 
-.dark-mode .navbar-brand {
+.dark-mode .exam-header {
+    color: #e0e0e0;
+    background-blend-mode: multiply;
+}
+
+.dark-mode .navbar-brand,
+.dark-mode .navbar {
+    background-color: #1f1f1f !important;
     color: #e0e0e0 !important;
 }
 
@@ -73,49 +75,23 @@ body {
     background-color: #1c1c1c;
 }
 
-.dark-mode .navbar {
-    background-color: #1f1f1f !important;
-    color: #e0e0e0;
-}
-
-.dark-mode .exam-header {
-    background-blend-mode: multiply;
-}
-
-/* 🔽 Tambahan Media Query untuk Responsif */
+/* Responsive Settings */
 @media (max-width: 768px) {
     .sidebar {
-        transform: translateX(-100%);
-        position: fixed;
-        z-index: 1000;
-    }
-
-    .sidebar.active {
-        transform: translateX(0);
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px 0;
+        text-align: center;
     }
 
     .main-content {
         margin-left: 0;
-        padding: 20px;
+        padding: 15px;
     }
-}
 
-/* Optional: Tambah tombol untuk toggle sidebar di layar kecil */
-.toggle-btn {
-    display: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1100;
-    background-color: #343a40;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-}
-
-@media (max-width: 768px) {
-    .toggle-btn {
-        display: block;
+    .sidebar a {
+        display: inline-block;
+        margin: 5px 10px;
     }
 }

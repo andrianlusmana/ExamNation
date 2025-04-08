@@ -11,10 +11,8 @@
 </head>
 
 <body>
-
     <!-- Sidebar -->
     <div class="sidebar">
-        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
         <h5 class="text-center">Admin Menu</h5>
         <a href="<?= base_url('admin/manage-exam'); ?>">Kelola Ujian</a>
         <a href="<?= base_url('admin/manage-users'); ?>">Kelola Pengguna</a>
