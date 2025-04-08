@@ -1,0 +1,106 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Mode terang */
+body.light-mode {
+    background-color: #f9f9f9;
+    color: #222;
+}
+
+/* Mode gelap */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+}
+
+.register-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 25px;
+    background-color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    color: #222;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+    background-color: #2b2b2b;
+    color: #f1f1f1;
+    border-color: #555;
+}
+
+button {
+    padding: 12px;
+    background: linear-gradient(to right, #007BFF, #00C9A7);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Toggle tema */
+.theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+}
+
+.theme-toggle button {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* Responsif */
+@media (max-width: 480px) {
+    .register-container {
+        padding: 20px 15px;
+    }
+
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+    }
+}
