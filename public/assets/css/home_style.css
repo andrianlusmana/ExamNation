@@ -1,100 +1,199 @@
+/* Reset dasar */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f4f9;
-    color: #2c3e50;
-    padding: 30px;
+    scroll-behavior: smooth;
 }
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 30px 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px 40px;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+    z-index: 100;
 }
 
-/* Heading */
-h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #2c3e50;
+.logo img {
+    height: 50px;
 }
 
-p {
-    font-size: 1rem;
-    margin-bottom: 25px;
-    color: #555;
+/* Navigation */
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
 }
 
-h3 {
-    font-size: 1.3rem;
-    margin-bottom: 18px;
-    color: #3e8e7e;
-    border-left: 4px solid #3e8e7e;
-    padding-left: 10px;
-}
-
-/* Tabel */
-.exam-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-}
-
-.exam-table th,
-.exam-table td {
-    padding: 14px 16px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-}
-
-.exam-table th {
-    background-color: #f0f0f0;
-    color: #333;
-    font-weight: 600;
-}
-
-.exam-table tr:hover {
-    background-color: #f9f9f9;
-}
-
-/* Tombol */
-.btn {
-    background-color: #3e8e7e;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 6px;
+nav ul li a {
     text-decoration: none;
-    font-size: 0.95rem;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #007BFF;
+}
+
+/* Hamburger menu */
+.menu-btn {
+    display: none;
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #007BFF, #00C9A7);
+    color: white;
+    padding: 100px 40px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #fff;
+    color: #007BFF;
+    font-weight: bold;
+    border-radius: 25px;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #34776b;
+.cta-button:hover {
+    background-color: #f0f0f0;
 }
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 60px 40px;
+    background-color: #f9f9f9;
+    flex-wrap: wrap;
+}
+
+.feature {
+    flex: 1 1 300px;
+    max-width: 400px;
+    margin: 20px;
+    text-align: center;
+}
+
+.feature h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #555;
+}
+
+/* Testimonials */
+.testimonials {
+    background-color: #fff;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.testimonial {
+    max-width: 600px;
+    margin: 0 auto;
+    font-style: italic;
+    color: #444;
+}
+
+.testimonial .user {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #222;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 30px 40px;
+    text-align: center;
+}
+
+footer .contact {
+    margin-bottom: 10px;
+}
+
+footer .social a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer .social a:hover {
+    text-decoration: underline;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
-    .container {
-        padding: 20px;
+    .menu-btn {
+        display: block;
     }
 
-    .exam-table th,
-    .exam-table td {
-        padding: 12px 10px;
-        font-size: 0.9rem;
+    nav {
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        display: none;
     }
 
-    .btn {
-        font-size: 0.85rem;
-        padding: 7px 12px;
+    nav.active {
+        display: block;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    nav ul li {
+        border-bottom: 1px solid #eee;
+    }
+
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 12px 20px;
+        color: #333;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
     }
 }
