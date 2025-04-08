@@ -18,7 +18,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="<?= base_url('assets/img/logo.png'); ?>" alt="Examination Logo">
+            <img src="<?= base_url('assets/img/logo-3d.PNG'); ?>" alt="Examination Logo">
         </div>
 
         <div class="menu-btn">
