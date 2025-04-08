@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Dashboard - Ujian</title>
-        <!-- CSS Style -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="<?= base_url('assets/css/admin_dashboard.css'); ?>">
-    </head>
-    
-    <body>
-        
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h5 class="text-center">Admin Menu</h5>
-            <a href="<?= base_url('admin/manage-exam'); ?>">Kelola Ujian</a>
-            <a href="<?= base_url('admin/manage-users'); ?>">Kelola Pengguna</a>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Ujian</title>
+    <!-- CSS Style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets/css/admin_dashboard.css'); ?>">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h5 class="text-center">Admin Menu</h5>
+        <a href="<?= base_url('admin/manage-exam'); ?>">Kelola Ujian</a>
+        <a href="<?= base_url('admin/manage-users'); ?>">Kelola Pengguna</a>
         <a href="<?= base_url('admin/add-exam'); ?>">Tambah Ujian</a>
         <a href="#statistik">Statistik Ujian</a>
         <button onclick="toggleDarkMode()" class="btn btn-sm btn-light mt-4 mx-3">🌙 Mode Gelap</button>
@@ -34,7 +33,7 @@
             <h1>Selamat Datang, Admin!</h1>
             <p class="lead">Kelola ujian, pengguna, dan lihat statistik dengan mudah.</p>
         </div>
-        
+
         <!-- Cards -->
         <div class="row g-4 mb-5">
             <div class="col-md-4">
@@ -46,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-4">
                 <div class="card text-center shadow">
                     <div class="card-body">
@@ -56,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-4">
                 <div class="card text-center shadow">
                     <div class="card-body">
@@ -76,7 +75,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Script JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url('assets/js/chart.js'); ?>"></script>
