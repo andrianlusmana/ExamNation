@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\ExamModel;
 use App\Models\UserModel;
+use App\Models\QuestionModel;
 
 class Admin extends BaseController
 {
@@ -15,44 +16,46 @@ class Admin extends BaseController
     {
         $examModel = new ExamModel();
         $data['exams'] = $examModel->findAll(); // Ambil semua data ujian dari database
-        
+
         return view('admin/manage_exam', $data);
     }
 
     public function editExam($id)
-{
-    $examModel = new ExamModel();
-    $data['exams'] = $examModel->find($id);
+    {
+        $examModel = new ExamModel();
+        $data['exams'] = $examModel->find($id);
 
-    if (!$data['exams']) {
-        throw new \CodeIgniter\Exceptions\PageNotFoundException('Ujian tidak ditemukan.');
+        if (!$data['exams']) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Ujian tidak ditemukan.');
+        }
+
+        return view('admin/edit_exam', $data);
     }
 
-    return view('admin/edit_exam', $data);
-}
+    public function updateExam($id)
+    {
+        $examModel = new ExamModel();
 
-public function updateExam($id)
-{
-    $examModel = new ExamModel();
+        // Validasi input
+        if (
+            !$this->validate([
+                'title' => 'required',
+                'description' => 'required',
+                'duration' => 'required|integer'
+            ])
+        ) {
+            return redirect()->back()->with('error', 'Semua field harus diisi dengan benar.');
+        }
 
-    // Validasi input
-    if (!$this->validate([
-        'title' => 'required',
-        'description' => 'required',
-        'duration' => 'required|integer'
-    ])) {
-        return redirect()->back()->with('error', 'Semua field harus diisi dengan benar.');
+        // Update data ujian
+        $examModel->update($id, [
+            'title' => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+            'duration' => $this->request->getPost('duration'),
+        ]);
+
+        return redirect()->to('/admin/manage_exam')->with('success', 'Ujian berhasil diperbarui.');
     }
-
-    // Update data ujian
-    $examModel->update($id, [
-        'title' => $this->request->getPost('title'),
-        'description' => $this->request->getPost('description'),
-        'duration' => $this->request->getPost('duration'),
-    ]);
-
-    return redirect()->to('/admin/manage_exam')->with('success', 'Ujian berhasil diperbarui.');
-}
 
 
     public function manageUsers()
@@ -71,7 +74,8 @@ public function updateExam($id)
         return redirect()->to('/admin/manage_users');
     }
 
-    public function delete_exam($id) {
+    public function delete_exam($id)
+    {
         $examModel = new ExamModel();
         if ($examModel->delete($id)) {
             return redirect()->to('admin/manage_exam')->with('success', 'Ujian berhasil dihapus');
@@ -79,7 +83,85 @@ public function updateExam($id)
             return redirect()->to('admin/manage_exam')->with('error', 'Gagal menghapus ujian');
         }
     }
-    
+
+    public function addExam()
+    {
+        return view('admin/add_exam'); // Tampilkan form tambah ujian
+    }
+
+    public function storeExam()
+    {
+        $examModel = new ExamModel();
+
+        // Validasi input
+        if (
+            !$this->validate([
+                'title' => 'required',
+                'description' => 'required',
+                'duration' => 'required|integer'
+            ])
+        ) {
+            return redirect()->back()->with('error', 'Semua field harus diisi dengan benar.');
+        }
+
+        // Pastikan sesi user_id ada
+        $createdBy = session()->get('user_id');
+
+        if (!$createdBy) {
+            return redirect()->back()->with('error', 'User belum login.');
+        }
+
+        // Simpan data ujian
+        $examModel->insert([
+            'title' => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+            'duration' => $this->request->getPost('duration'),
+            'created_by' => $createdBy,
+        ]);
+
+        return redirect()->to('/admin/manage-exam')->with('success', 'Ujian berhasil ditambahkan.');
+    }
+
+    public function addQuestion($exam_id)
+    {
+        $data['exam_id'] = $exam_id;
+        return view('admin/add_question', $data);
+    }
+
+    public function storeQuestion()
+    {
+        $questionModel = new QuestionModel();
+
+        
+        if (
+            !$this->validate([
+                'question_text' => 'required',
+                'option_a' => 'required',
+                'option_b' => 'required',
+                'option_c' => 'required',
+                'option_d' => 'required',
+                'correct_option' => 'required|in_list[A,B,C,D]'
+            ])
+        ) {
+            return redirect()->back()->with('error', 'Semua field harus diisi dengan benar.');
+        }
+
+        // Simpan data soal
+        $questionModel->insert([
+            'exam_id' => $this->request->getPost('exam_id'),
+            'question_text' => $this->request->getPost('question_text'),
+            'option_a' => $this->request->getPost('option_a'),
+            'option_b' => $this->request->getPost('option_b'),
+            'option_c' => $this->request->getPost('option_c'),
+            'option_d' => $this->request->getPost('option_d'),
+            'correct_option' => $this->request->getPost('correct_option'),
+        ]);
+
+        return redirect()->to('/admin/manage-exam')->with('success', 'Soal berhasil ditambahkan.');
+    }
+
+
+
 }
 
 
