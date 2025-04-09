@@ -28,7 +28,7 @@
 
 ## 🧰 Teknologi yang Digunakan
 
-| 🔧 Backend  | PHP 7.4+, CodeIgniter 4 |
+| 🔧 Backend  | PHP 8.1+, CodeIgniter 4 |
 |------------|--------------------------|
 | 🎨 Frontend| HTML5, CSS, JavaScript, Bootstrap |
 | 🗃️ Database| MySQL                    |
@@ -92,7 +92,7 @@ CREATE TABLE exams (
     title VARCHAR(255) NOT NULL,
     description TEXT,
     total_questions INT NOT NULL,
-    duration INT NOT NULL, -- dalam menit
+    duration INT NOT NULL, 
     created_by INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
