@@ -7,7 +7,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/CI4-Framework-blue?style=flat-square" />
-  <img src="https://img.shields.io/badge/PHP-7.4%2B-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/PHP-8.1%2B-green?style=flat-square" />
   <img src="https://img.shields.io/badge/MySQL-Database-orange?style=flat-square" />
   <img src="https://img.shields.io/badge/Bootstrap-Frontend-purple?style=flat-square" />
 </p>
