@@ -1,68 +1,122 @@
-# CodeIgniter 4 Application Starter
+<h1 align="center">🎓 Examination</h1>
 
-## What is CodeIgniter?
+<p align="center">
+  <strong>Aplikasi Ujian Online Berbasis Web</strong><br>
+  <i>Dibangun menggunakan CodeIgniter 4 untuk kebutuhan ujian modern, cepat, dan aman.</i>
+</p>
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+<p align="center">
+  <img src="https://img.shields.io/badge/CI4-Framework-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/PHP-7.4%2B-green?style=flat-square" />
+  <img src="https://img.shields.io/badge/MySQL-Database-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/Bootstrap-Frontend-purple?style=flat-square" />
+</p>
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+---
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## 🚀 Fitur Utama
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- 🔐 **Autentikasi** dengan fitur register dan login
+- 🌗 **Dark Mode** pada login & register
+- 👨‍🏫 **Admin Panel** untuk kelola user, ujian, dan soal
+- 📝 **Tambah & Edit Soal Ujian**
+- ⏳ **Timer Otomatis** untuk setiap ujian
+- 📈 **Rekap Nilai** peserta ujian
+- 🧪 **Multiple Choice Questions (MCQ)**
 
-## Installation & updates
+---
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 🧰 Teknologi yang Digunakan
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+| 🔧 Backend  | PHP 7.4+, CodeIgniter 4 |
+|------------|--------------------------|
+| 🎨 Frontend| HTML5, CSS, JavaScript, Bootstrap |
+| 🗃️ Database| MySQL                    |
+| 🌐 Server  | Apache (XAMPP/Laragon/Live Hosting) |
 
-## Setup
+---
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+## 🖼️ Tampilan Aplikasi
 
-## Important Change with index.php
+### 🏠 Homepage
+![Homepage](/ss/homepage.png)
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+---
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 🔐 Login & 📝 Register (dengan dark mode)
+<div align="center">
+  <img src="/ss/login.png" width="48%">
+  <img src="/ss/register.png" width="48%">
+</div>
 
-**Please** read the user guide for a better explanation of how CI4 works!
+---
 
-## Repository Management
+## 👨‍💼 Halaman Admin
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+| Fitur                     | Gambar |
+|--------------------------|--------|
+| 📊 Dashboard Admin        | ![Dashboard Admin](/ss/admin_dashboard.png) |
+| 👥 Kelola User            | ![Kelola User](/ss/kelola-user.png) |
+| 📚 Kelola Ujian           | ![Kelola Ujian](/ss/kelola-ujian.png) |
+| ➕ Tambah Ujian           | ![Tambah Ujian](/ss/tambah-ujian.png) |
+| ➕ Tambah Soal            | ![Tambah Soal](/ss/tambah-soal.png) |
+| ✏️ Edit Ujian             | ![Edit Ujian](/ss/edit-ujian.png) |
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+---
 
-## Server Requirements
+## 👨‍🎓 Halaman Peserta
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+| Fitur                  | Gambar |
+|-----------------------|--------|
+| 🏁 Dashboard Peserta   | ![Dashboard Peserta](/ss/peserta_dashboard.png) |
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+---
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+## 🗄️ Struktur Database
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+```sql
+CREATE DATABASE examnation_db;
+USE examnation_db;
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'participant') NOT NULL DEFAULT 'participant',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE exams (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    total_questions INT NOT NULL,
+    duration INT NOT NULL, -- dalam menit
+    created_by INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    exam_id INT NOT NULL,
+    question_text TEXT NOT NULL,
+    option_a VARCHAR(255) NOT NULL,
+    option_b VARCHAR(255) NOT NULL,
+    option_c VARCHAR(255) NOT NULL,
+    option_d VARCHAR(255) NOT NULL,
+    correct_option ENUM('A', 'B', 'C', 'D') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (exam_id) REFERENCES exams(id) ON DELETE CASCADE
+);
+
+CREATE TABLE results (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    exam_id INT NOT NULL,
+    score INT NOT NULL,
+    taken_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (exam_id) REFERENCES exams(id) ON DELETE CASCADE
+);
