@@ -1,24 +1,25 @@
-<?= $this->include('layouts/header') ?>
+<link rel="stylesheet" href="<?= base_url('assets/css/edit_exam.css') ?>">
 
-<h2>Edit Ujian</h2>
 
-<?php if (session()->has('error')) : ?>
-    <div class="alert alert-danger">
-        <?= session('error') ?>
-    </div>
-<?php endif; ?>
+<div class="form-wrapper">
+  <h2>Edit Ujian</h2>
 
-<form action="<?= base_url('admin/update_exam/' . $exams['id']) ?>" method="post">
-    <label>Judul:</label>
-    <input type="text" name="title" value="<?= esc($exams['title']) ?>" required>
+  <?php if (session()->has('error')) : ?>
+      <div class="alert">
+          <?= session('error') ?>
+      </div>
+  <?php endif; ?>
 
-    <label>Deskripsi:</label>
-    <textarea name="description" required><?= esc($exams['description']) ?></textarea>
+  <form action="<?= base_url('admin/update_exam/' . $exams['id']) ?>" method="post">
+      <label for="title">Judul:</label>
+      <input type="text" id="title" name="title" value="<?= esc($exams['title']) ?>" required>
 
-    <label>Durasi (menit):</label>
-    <input type="number" name="duration" value="<?= esc($exams['duration']) ?>" required>
+      <label for="description">Deskripsi:</label>
+      <textarea id="description" name="description" required><?= esc($exams['description']) ?></textarea>
 
-    <button type="submit" class="btn btn-primary">Simpan</button>
-</form>
+      <label for="duration">Durasi (menit):</label>
+      <input type="number" id="duration" name="duration" value="<?= esc($exams['duration']) ?>" required>
 
-<?= $this->include('layouts/footer') ?>
+      <button type="submit" class="btn">💾 Simpan</button>
+  </form>
+</div>
